@@ -26,8 +26,8 @@ package xyz.bitnaesser.multiplechoice.controller;
 
 
 import xyz.bitnaesser.multiplechoice.model.Question;
-import xyz.bitnaesser.multiplechoice.model.QuestionModel;
-import xyz.bitnaesser.multiplechoice.model.source.XmlDataSource;
+import xyz.bitnaesser.multiplechoice.model.source.QuestionModel;
+import xyz.bitnaesser.multiplechoice.model.source.QuestionXmlDataSource;
 
 public class QuestionController {
 	private QuestionModel questionModel;
@@ -35,7 +35,7 @@ public class QuestionController {
 	//private LinkedList<Question.Answer> answerList = null;
 
 	QuestionController(){
-		questionModel = new QuestionModel(new XmlDataSource());
+		questionModel = new QuestionModel(new QuestionXmlDataSource());
 	}
 
 	private void loadNextQuestion(){

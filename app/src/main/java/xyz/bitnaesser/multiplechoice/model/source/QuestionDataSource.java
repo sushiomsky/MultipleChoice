@@ -24,11 +24,6 @@
 
 package xyz.bitnaesser.multiplechoice.model.source;
 
+public interface QuestionDataSource {
 
-import java.util.LinkedList;
-
-import xyz.bitnaesser.multiplechoice.model.Question;
-
-public abstract class QuestionDataSource {
-	public abstract LinkedList<Question> getQuestions();
 }

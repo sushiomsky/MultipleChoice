@@ -24,14 +24,6 @@
 
 package xyz.bitnaesser.multiplechoice.model.source;
 
-import java.util.LinkedList;
+public class QuestionSqliteDataSource implements QuestionDataSource {
 
-import xyz.bitnaesser.multiplechoice.model.Question;
-
-public class SqliteDataSource extends QuestionDataSource {
-
-	@Override
-	public LinkedList<Question> getQuestions() {
-		return null;
-	}
 }
