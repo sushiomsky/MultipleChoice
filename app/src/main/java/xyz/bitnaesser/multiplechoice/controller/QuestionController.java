@@ -22,28 +22,26 @@
  * /
  */
 
-package xyz.bitnaesser.multiplechoice.model;
+package xyz.bitnaesser.multiplechoice.controller;
 
 
-import java.util.LinkedList;
-import java.util.ListIterator;
+import xyz.bitnaesser.multiplechoice.model.Question;
+import xyz.bitnaesser.multiplechoice.model.QuestionModel;
+import xyz.bitnaesser.multiplechoice.model.source.XmlDataSource;
 
-import xyz.bitnaesser.multiplechoice.model.source.QuestionDataSource;
+public class QuestionController {
+	private QuestionModel questionModel;
+	private Question question;
+	//private LinkedList<Question.Answer> answerList = null;
 
-public class QuestionModel implements QuestionModelInterface {
-	private QuestionDataSource questionDataSource;
-	private LinkedList<Question> questions = new LinkedList();
-	private ListIterator<Question> questionListIterator = questions.listIterator(0);
-
-	public QuestionModel(QuestionDataSource _questionDataSource){
-		questionDataSource = _questionDataSource;
-		questions = questionDataSource.getQuestions();
+	QuestionController(){
+		questionModel = new QuestionModel(new XmlDataSource());
 	}
 
-	public Question getNextQuestion(){
-		return questionListIterator.next();
+	private void loadNextQuestion(){
+		question = questionModel.getNextQuestion();
+	//	answerList = question.getAnswerList();
 	}
 
-
-
+	void showAnswers(){}
 }

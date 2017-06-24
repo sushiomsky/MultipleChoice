@@ -42,8 +42,12 @@ public class Question {
 		return question;
 	}
 
-	String getNextAnswerString(){
-		return answerListIterator.next().getAnswerString();
+	LinkedList<String> getAnswerStrings(){
+		LinkedList<String> answerStrings = new LinkedList();
+		while (answerListIterator.hasNext()) {
+			answerStrings.add(answerListIterator.next().getAnswerString());
+		}
+		return answerStrings;
 	}
 
 	void addWrongAnswer(String answer){
