@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><!--
+<!--
   ~ /**
   ~  * ${PROJECT_NAME}
   ~  * Copyright (c) ${YEAR} Dennis Suchomsky <dennis.suchomsky@gmail.com>
@@ -20,27 +20,10 @@
   ~ /**
   ~ * @todo Keep it simple!
   ~ */
--->
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="xyz.bitnaesser.multiplechoice">
-
-    <application
-        android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity
-            android:name=".QuestionActivity"
-            android:label="@string/title_activity_question"
-            android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-    </application>
-
-</manifest>
+  -->
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fragmentContainer"
+    android:name="xyz.bitnaesser.multiplechoice.QuestionActivityFragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" />
