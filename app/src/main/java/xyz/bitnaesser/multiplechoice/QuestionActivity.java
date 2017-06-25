@@ -29,6 +29,8 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
+import io.reactivex.Observable;
+import xyz.bitnaesser.multiplechoice.model.Question;
 import xyz.bitnaesser.multiplechoice.util.ActivityUtils;
 
 public class QuestionActivity extends AppCompatActivity {
@@ -40,6 +42,12 @@ public class QuestionActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        Question question = new Question("ayjfca");
+        
+        // Loads documents in parallel
+        Observable
+                .just(question)
+                .subscribe();
         // Create new fragment and transaction
         Fragment questionActivityFragment = new QuestionActivityFragment();
         ActivityUtils.addFragmentToActivity(getSupportFragmentManager(), questionActivityFragment, R.id.fragmentContainer);

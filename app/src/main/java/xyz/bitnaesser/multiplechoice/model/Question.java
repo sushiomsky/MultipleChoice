@@ -30,7 +30,7 @@ public class Question {
 	private LinkedList<Answer> answerList;
 	private String questionString;
 
-	Question(String _question){
+	public Question(String _question){
 		questionString = _question;
 		answerList = new LinkedList<>();
 	}

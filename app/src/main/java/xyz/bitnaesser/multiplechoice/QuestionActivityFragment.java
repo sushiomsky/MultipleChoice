@@ -31,7 +31,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 /**
- * A placeholder fragment containing a simple view.
+ * A fragment containing a simple view.
  */
 public class QuestionActivityFragment extends Fragment {
 
