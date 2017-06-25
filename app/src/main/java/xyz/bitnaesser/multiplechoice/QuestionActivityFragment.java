@@ -35,18 +35,29 @@ import android.widget.TextView;
  * A fragment containing a simple view.
  */
 public class QuestionActivityFragment extends Fragment implements View.OnClickListener{
+    private TextView textViewQuestion,
+                        textViewAnswer1,
+                        textViewAnswer2,
+                        textViewAnswer3,
+                        textViewAnswer4,
+                        textViewAnswer5,
+                        textViewAnswer6;
 
     public QuestionActivityFragment() {
+        textViewQuestion = (TextView)getActivity().findViewById(R.id.textViewQuestion);
+        textViewAnswer1 = (TextView)getActivity().findViewById(R.id.textViewAnswer1);
+        textViewAnswer2 = (TextView)getActivity().findViewById(R.id.textViewAnswer2);
+        textViewAnswer3 = (TextView)getActivity().findViewById(R.id.textViewAnswer3);
+        textViewAnswer4 = (TextView)getActivity().findViewById(R.id.textViewAnswer4);
+        textViewAnswer5 = (TextView)getActivity().findViewById(R.id.textViewAnswer5);
+        textViewAnswer6 = (TextView)getActivity().findViewById(R.id.textViewAnswer6);
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_question, container, false);
-    }
-
-    public void onAnswerClicked(){
-
     }
 
     /**
