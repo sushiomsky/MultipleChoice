@@ -28,7 +28,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="xyz.bitnaesser.multiplechoice.QuestionActivity">
+    tools:context="xyz.bitnaesser.multiplechoice.question.QuestionActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"

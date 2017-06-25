@@ -22,7 +22,7 @@
  * /
  */
 
-package xyz.bitnaesser.multiplechoice;
+package xyz.bitnaesser.multiplechoice.question;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -30,6 +30,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import io.reactivex.Observable;
+import xyz.bitnaesser.multiplechoice.R;
 import xyz.bitnaesser.multiplechoice.model.Question;
 import xyz.bitnaesser.multiplechoice.util.ActivityUtils;
 
