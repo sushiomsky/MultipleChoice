@@ -30,7 +30,7 @@ import android.support.annotation.NonNull;
  * Created by sushi on 25.06.17.
  */
 
-public class QuestionPresenter implements QuestionContract.Presenter{
+public class QuestionPresenter implements QuestionContract.Presenter {
 
     private final QuestionContract.View mQuestionsView;
 
