@@ -54,7 +54,7 @@ public class QuestionActivityFragment extends Fragment implements QuestionContra
     public static QuestionActivityFragment newInstance() {
         return new QuestionActivityFragment();
     }
-    
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

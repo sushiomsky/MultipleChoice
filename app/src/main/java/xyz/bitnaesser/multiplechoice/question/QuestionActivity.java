@@ -36,6 +36,8 @@ import xyz.bitnaesser.multiplechoice.util.ActivityUtils;
 
 public class QuestionActivity extends AppCompatActivity {
 
+    private QuestionPresenter mQuestionPresenter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +54,8 @@ public class QuestionActivity extends AppCompatActivity {
         // Create new fragment and transaction
         Fragment questionActivityFragment = new QuestionActivityFragment();
         ActivityUtils.addFragmentToActivity(getSupportFragmentManager(), questionActivityFragment, R.id.fragmentContainer);
+
+        mQuestionPresenter = new QuestionPresenter((QuestionContract.View) questionActivityFragment);
     }
 
 }
