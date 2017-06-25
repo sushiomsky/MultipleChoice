@@ -26,15 +26,13 @@ package xyz.bitnaesser.multiplechoice.question;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
-import io.reactivex.Observable;
+import nucleus5.view.NucleusAppCompatActivity;
 import xyz.bitnaesser.multiplechoice.R;
-import xyz.bitnaesser.multiplechoice.model.Question;
 import xyz.bitnaesser.multiplechoice.util.ActivityUtils;
 
-public class QuestionActivity extends AppCompatActivity {
+public class QuestionActivity extends NucleusAppCompatActivity<QuestionPresenter> {
 
     private QuestionPresenter mQuestionPresenter;
 
@@ -45,12 +43,6 @@ public class QuestionActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        Question question = new Question("ayjfca");
-
-        // Loads documents in parallel
-        Observable
-                .just(question)
-                .subscribe();
         // Create new fragment and transaction
         Fragment questionActivityFragment = new QuestionActivityFragment();
         ActivityUtils.addFragmentToActivity(getSupportFragmentManager(), questionActivityFragment, R.id.fragmentContainer);

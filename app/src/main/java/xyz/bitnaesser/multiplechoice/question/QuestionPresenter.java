@@ -26,11 +26,13 @@ package xyz.bitnaesser.multiplechoice.question;
 
 import android.support.annotation.NonNull;
 
+import nucleus5.presenter.Presenter;
+
 /**
  * Created by sushi on 25.06.17.
  */
 
-public class QuestionPresenter implements QuestionContract.Presenter {
+public class QuestionPresenter extends Presenter implements QuestionContract.Presenter {
 
     private final QuestionContract.View mQuestionsView;
 
