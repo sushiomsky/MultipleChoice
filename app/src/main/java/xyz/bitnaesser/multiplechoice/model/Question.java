@@ -25,11 +25,9 @@
 package xyz.bitnaesser.multiplechoice.model;
 
 import java.util.LinkedList;
-import java.util.ListIterator;
 
 public class Question {
 	private LinkedList<Answer> answerList;
-	private ListIterator<Answer> answerListIterator;
 	private String questionString;
 
 	Question(String _question){
@@ -45,11 +43,11 @@ public class Question {
 		return answerList;
 	}
 
-	void addWrongAnswer(String answer){
+	public void addWrongAnswer(String answer){
 		answerList.add(new WrongAnswer(answer));
 	}
 
-	void addRightAnswer(String answer){
+	public void addRightAnswer(String answer){
 		answerList.add(new RightAnswer(answer));
 	}
 
