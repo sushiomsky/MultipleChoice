@@ -43,7 +43,7 @@ public class QuestionActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         Question question = new Question("ayjfca");
-        
+
         // Loads documents in parallel
         Observable
                 .just(question)

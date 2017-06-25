@@ -29,11 +29,12 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 /**
  * A fragment containing a simple view.
  */
-public class QuestionActivityFragment extends Fragment {
+public class QuestionActivityFragment extends Fragment implements View.OnClickListener{
 
     public QuestionActivityFragment() {
     }
@@ -43,4 +44,27 @@ public class QuestionActivityFragment extends Fragment {
                              Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_question, container, false);
     }
+
+    public void onAnswerClicked(){
+
+    }
+
+    /**
+     * Called when a view has been clicked.
+     *
+     * @param view The view that was clicked.
+     */
+    @Override
+    public void onClick(View view) {
+        answerSelected((TextView) view);
+    }
+
+    void answerSelected(TextView answerTextView){
+        answerTextView.setBackgroundColor(0);
+    }
+
+    void hideAnswerTextView(TextView answerTextView){
+        answerTextView.setVisibility(View.GONE);
+    }
+
 }
