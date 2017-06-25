@@ -30,24 +30,19 @@ import java.util.ListIterator;
 public class Question {
 	private LinkedList<Answer> answerList;
 	private ListIterator<Answer> answerListIterator;
-	private String question;
+	private String questionString;
 
 	Question(String _question){
-		question = _question;
+		questionString = _question;
 		answerList = new LinkedList<>();
-		answerListIterator = answerList.listIterator(0);
 	}
 
-	String getQuestionString(){
-		return question;
+	public String getQuestionString(){
+		return questionString;
 	}
 
-	LinkedList<String> getAnswerStrings(){
-		LinkedList<String> answerStrings = new LinkedList();
-		while (answerListIterator.hasNext()) {
-			answerStrings.add(answerListIterator.next().getAnswerString());
-		}
-		return answerStrings;
+	public LinkedList<Answer> getAnswers(){
+		return answerList;
 	}
 
 	void addWrongAnswer(String answer){
