@@ -24,28 +24,33 @@
 
 package xyz.bitnaesser.multiplechoice.base;
 
-import android.app.Application;
+import android.text.Html;
 
-import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
-import retrofit2.converter.gson.GsonConverterFactory;
+import com.google.gson.annotations.SerializedName;
 
-public class App extends Application {
+import io.reactivex.Observable;
+import retrofit2.http.GET;
+import retrofit2.http.Query;
 
-    private static ServerAPI serverAPI;
+public interface ServerAPI {
 
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        serverAPI = new Retrofit.Builder()
-                .baseUrl(ServerAPI.ENDPOINT)
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
-                .build()
-                .create(ServerAPI.class);
+    String ENDPOINT = "http://api.icndb.com";
+
+    class Item {
+        @SerializedName("joke")
+        public String text;
+
+        @Override
+        public String toString() {
+            return Html.fromHtml(text).toString();
+        }
     }
 
-    public static ServerAPI getServerAPI() {
-        return serverAPI;
+    class Response {
+        @SerializedName("value")
+        public Item[] items;
     }
+
+    @GET("/jokes/random/10")
+    Observable<Response> getItems(@Query("firstName") String firstName, @Query("lastName") String lastName);
 }

@@ -51,6 +51,8 @@ public class QuestionActivity extends NucleusActivity<QuestionPresenter> {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (savedInstanceState == null)
+            getPresenter().loadQuestion();
         setContentView(R.layout.activity_question);
 
         textViewQuestion = (TextView)findViewById(R.id.textViewQuestion);

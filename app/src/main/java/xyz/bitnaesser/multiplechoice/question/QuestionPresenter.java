@@ -18,6 +18,10 @@ public class QuestionPresenter extends RxPresenter<QuestionActivity> {
     }
 
 
+    public void loadQuestion(){
+
+    }
+
     public void next() {
   //      start(REQUEST_ITEMS);
     }
