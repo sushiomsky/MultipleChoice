@@ -20,6 +20,7 @@ public class QuestionPresenter extends RxPresenter<QuestionActivity> {
 
     public void loadQuestion(){
 
+        //get a Question object
     }
 
     public void next() {

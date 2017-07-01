@@ -18,6 +18,8 @@ import xyz.bitnaesser.multiplechoice.R;
 public class QuestionActivity extends NucleusActivity<QuestionPresenter> {
 
     private TextView textViewQuestion;
+
+    private LinearLayout answersContainer;
     private ArrayList<CheckBox> checkBoxAnswers;
 
     private Button buttonNext;
@@ -32,14 +34,15 @@ public class QuestionActivity extends NucleusActivity<QuestionPresenter> {
         setContentView(R.layout.activity_question);
 
         textViewQuestion = (TextView)findViewById(R.id.textViewQuestion);
-        LinearLayout answersContainer = (LinearLayout) findViewById(R.id.answers_container);
+        answersContainer = (LinearLayout)findViewById(R.id.answers_container);
 
-        for(int i = 0; i < 6; i++) {
-            CheckBox cb = new CheckBox(this);
-            cb.setText("I'm dynamic!");
-            answersContainer.addView(cb);
-        }
+        registerButtonNext();
+    }
 
+    /**
+     * Register onclickhandler for buttonNext
+     */
+    private void registerButtonNext(){
         buttonNext = (Button)findViewById(R.id.buttonNext);
         buttonNext.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -47,5 +50,33 @@ public class QuestionActivity extends NucleusActivity<QuestionPresenter> {
                 getPresenter().next();
             }
         });
+    }
+
+    /**
+     * Setting a question is only allowed with a list of Answers
+     * @param question
+     * @param answers
+     */
+    public void setQuestion(String question, ArrayList<String> answers){
+        setQuestionString(question);
+        setAnswerStrings(answers);
+    }
+
+    private void setQuestionString(String question){
+        textViewQuestion.setText(question);
+    }
+
+    private void setAnswerStrings(ArrayList<String> answers){
+        for (String answer: answers){
+            CheckBox cb = new CheckBox(this);
+            cb.setText(answer);
+            cb.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
+            answersContainer.addView(cb);
+        }
     }
 }
