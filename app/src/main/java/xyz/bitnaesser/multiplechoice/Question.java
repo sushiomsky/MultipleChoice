@@ -44,6 +44,7 @@ public class Question {
 			super(_answerString);
 		}
 	}
+
 	private class WrongAnswer extends Answer {
 		WrongAnswer(String _answerString) {
 			super(_answerString);
