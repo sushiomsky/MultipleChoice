@@ -22,7 +22,7 @@
  * /
  */
 
-package xyz.bitnaesser.multiplechoice.model;
+package xyz.bitnaesser.multiplechoice;
 
 import java.util.LinkedList;
 
