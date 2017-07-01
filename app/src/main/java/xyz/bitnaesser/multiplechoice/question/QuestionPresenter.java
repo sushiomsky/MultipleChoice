@@ -46,7 +46,7 @@ public class QuestionPresenter extends RxPresenter<QuestionActivity> {
                     @Override
                     public Observable<ServerAPI.Response> create() {
                         return App.getServerAPI()
-                                .getItems()
+                                .getQuestions()
                                 .subscribeOn(io())
                                 .observeOn(mainThread());
                     }
@@ -63,7 +63,7 @@ public class QuestionPresenter extends RxPresenter<QuestionActivity> {
                          * Model data changed the View will be informed via Callback
                          * Data->Model->Presenter->View Flow
                          */
-                        activity.onItems(response.items, name);
+                        activity.onQuestions(response.questions, name);
                     }
                 },
                 new BiConsumer<QuestionActivity, Throwable>() {

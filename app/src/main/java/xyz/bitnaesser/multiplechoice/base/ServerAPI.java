@@ -15,7 +15,7 @@ public interface ServerAPI {
 
     String ENDPOINT = "http://bitnaesser.xyz";
 
-    class Item {
+    class Question {
         @SerializedName("question")
         public String text;
 
@@ -27,9 +27,9 @@ public interface ServerAPI {
 
     class Response {
         @SerializedName("value")
-        public Item[] items;
+        public Question[] questions;
     }
 
     @GET("/question/random")
-    Observable<Response> getItems();
+    Observable<Response> getQuestions();
 }

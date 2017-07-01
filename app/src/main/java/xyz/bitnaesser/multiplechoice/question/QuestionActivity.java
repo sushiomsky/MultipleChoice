@@ -28,7 +28,7 @@ public class QuestionActivity extends NucleusActivity<QuestionPresenter> {
     private Button buttonNext;
     private Button buttonShowResults;
 
-    ArrayAdapter<ServerAPI.Item> adapter;
+    ArrayAdapter<ServerAPI.Question> adapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -46,12 +46,12 @@ public class QuestionActivity extends NucleusActivity<QuestionPresenter> {
         registerButtonNext();
     }
 
-    public void onItems(ServerAPI.Item[] items, String user) {
+    public void onQuestions(ServerAPI.Question[] questions, String user) {
         //check1.setChecked(user.equals(MainPresenter.NAME_1));
         //check2.setChecked(user.equals(MainPresenter.NAME_2));
 
         adapter.clear();
-        adapter.addAll(items);
+        adapter.addAll(questions);
     }
 
     public void onNetworkError(Throwable throwable) {
