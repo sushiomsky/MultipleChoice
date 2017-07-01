@@ -34,6 +34,7 @@ import nucleus5.view.NucleusActivity;
 import xyz.bitnaesser.multiplechoice.R;
 
 
+
 @RequiresPresenter(QuestionPresenter.class)
 public class QuestionActivity extends NucleusActivity<QuestionPresenter> {
 
@@ -66,6 +67,18 @@ public class QuestionActivity extends NucleusActivity<QuestionPresenter> {
             @Override
             public void onClick(View v) {
                 getPresenter().next();
+            }
+        });
+
+        textViewAnswer1.setOnClickListener(new View.OnClickListener(){
+            /**
+             * Called when a answer has been clicked.
+             *
+             * @param v The view that was clicked.
+             */
+            @Override
+            public void onClick(View v) {
+                textViewAnswer1.setBackgroundColor(0x00cc00);
             }
         });
     }
