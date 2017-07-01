@@ -7,7 +7,9 @@
 package xyz.bitnaesser.multiplechoice.base;
 
 import android.text.Html;
+
 import com.google.gson.annotations.SerializedName;
+
 import io.reactivex.Observable;
 import retrofit2.http.GET;
 
@@ -23,8 +25,10 @@ public interface ServerAPI {
         public String toString() {
             return Html.fromHtml(text).toString();
         }
-    }
 
+        @SerializedName("answers")
+        public String[] answers;
+    }
     class Response {
         @SerializedName("value")
         public Question[] questions;

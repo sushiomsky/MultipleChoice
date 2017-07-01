@@ -46,10 +46,10 @@ public class QuestionActivity extends NucleusActivity<QuestionPresenter> {
         registerButtonNext();
     }
 
-    public void onQuestions(ServerAPI.Question[] questions, String user) {
+    public void onQuestions(ServerAPI.Question[] questions) {
         //check1.setChecked(user.equals(MainPresenter.NAME_1));
         //check2.setChecked(user.equals(MainPresenter.NAME_2));
-
+        setQuestion(questions[0].text.toString(), questions[0].answers);
         adapter.clear();
         adapter.addAll(questions);
     }
@@ -75,7 +75,7 @@ public class QuestionActivity extends NucleusActivity<QuestionPresenter> {
      * @param question
      * @param answers
      */
-    public void setQuestion(String question, ArrayList<String> answers){
+    public void setQuestion(String question, String[] answers){
         setQuestionString(question);
         setAnswerStrings(answers);
     }
@@ -84,7 +84,7 @@ public class QuestionActivity extends NucleusActivity<QuestionPresenter> {
         textViewQuestion.setText(question);
     }
 
-    private void setAnswerStrings(ArrayList<String> answers){
+    private void setAnswerStrings(String[] answers){
         for (String answer: answers){
             CheckBox cb = new CheckBox(this);
             cb.setText(answer);
