@@ -12,27 +12,31 @@ import com.google.gson.annotations.SerializedName;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;
-import retrofit2.http.Query;
 
 public interface ServerAPI {
 
     String ENDPOINT = "http://bitnaesser.xyz";
 
-    class Item {
+    class Question {
         @SerializedName("question")
         public String text;
+
 
         @Override
         public String toString() {
             return Html.fromHtml(text).toString();
         }
+
+        class Answer {
+
+        }
     }
 
     class Response {
         @SerializedName("value")
-        public Item[] items;
+        public Question question;
     }
 
     @GET("/question/random")
-    Observable<Response> getItems(@Query("firstName") String firstName, @Query("lastName") String lastName);
+    Observable<Response> getItems();
 }

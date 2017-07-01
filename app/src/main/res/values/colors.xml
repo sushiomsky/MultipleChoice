@@ -2,8 +2,4 @@
 <resources>
     <color name="header_background">#673ab7</color>
     <color name="header_text">#fff</color>
-
-    <color name="answer_selected">cccccc</color>
-    <color name="answer_correct">00cc00</color>
-    <color name="answer_wrong">cc0000</color>
 </resources>
