@@ -2,16 +2,19 @@ package xyz.bitnaesser.multiplechoice.question;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import nucleus5.factory.RequiresPresenter;
 import nucleus5.view.NucleusActivity;
 import xyz.bitnaesser.multiplechoice.R;
+import xyz.bitnaesser.multiplechoice.base.ServerAPI;
 
 
 @RequiresPresenter(QuestionPresenter.class)
@@ -25,13 +28,17 @@ public class QuestionActivity extends NucleusActivity<QuestionPresenter> {
     private Button buttonNext;
     private Button buttonShowResults;
 
+    ArrayAdapter<ServerAPI.Item> adapter;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (savedInstanceState == null)
-            getPresenter().loadQuestion();
-
         setContentView(R.layout.activity_question);
+
+        if (savedInstanceState == null)
+            getPresenter().request();
+
+
 
         textViewQuestion = (TextView)findViewById(R.id.textViewQuestion);
         answersContainer = (LinearLayout)findViewById(R.id.answers_container);
@@ -39,6 +46,17 @@ public class QuestionActivity extends NucleusActivity<QuestionPresenter> {
         registerButtonNext();
     }
 
+    public void onItems(ServerAPI.Item[] items, String user) {
+        //check1.setChecked(user.equals(MainPresenter.NAME_1));
+        //check2.setChecked(user.equals(MainPresenter.NAME_2));
+
+        adapter.clear();
+        adapter.addAll(items);
+    }
+
+    public void onNetworkError(Throwable throwable) {
+        Toast.makeText(this, throwable.getMessage(), Toast.LENGTH_LONG).show();
+    }
     /**
      * Register onclickhandler for buttonNext
      */
@@ -47,7 +65,7 @@ public class QuestionActivity extends NucleusActivity<QuestionPresenter> {
         buttonNext.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                getPresenter().next();
+                getPresenter().request();
             }
         });
     }
