@@ -51,15 +51,28 @@ public class QuestionPresenter extends RxPresenter<QuestionActivity> {
                                 .observeOn(mainThread());
                     }
                 },
+
+               /**
+                public interface BiConsumer<T1, T2>
+                A functional interface (callback) that accepts two values (of possibly different types).
+               */
                 new BiConsumer<QuestionActivity, ServerAPI.Response>() {
                     @Override
                     public void accept(QuestionActivity activity, ServerAPI.Response response) throws Exception {
+                        /**
+                         * Model data changed the View will be informed via Callback
+                         * Data->Model->Presenter->View Flow
+                         */
                         activity.onItems(response.items, name);
                     }
                 },
                 new BiConsumer<QuestionActivity, Throwable>() {
                     @Override
                     public void accept(QuestionActivity activity, Throwable throwable) throws Exception {
+                        /**
+                         * Exception, View will be informed via Callback
+                         * Data->Model->Presenter->View Flow
+                         */
                         activity.onNetworkError(throwable);
                     }
                 });
