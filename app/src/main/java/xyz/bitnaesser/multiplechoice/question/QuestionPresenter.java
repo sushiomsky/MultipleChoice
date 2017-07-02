@@ -2,6 +2,9 @@ package xyz.bitnaesser.multiplechoice.question;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.widget.CheckBox;
+
+import java.util.ArrayList;
 
 import io.reactivex.Observable;
 import io.reactivex.functions.BiConsumer;
@@ -23,8 +26,6 @@ public class QuestionPresenter extends RxPresenter<QuestionActivity> {
     private static final String NAME_KEY = QuestionPresenter.class.getName() + "#name";
 
     private String name = DEFAULT_NAME;
-
-    private ServerAPI.Response response;
 
     @Override
     public void onCreate(Bundle savedState) {
@@ -60,15 +61,11 @@ public class QuestionPresenter extends RxPresenter<QuestionActivity> {
                */
                 new BiConsumer<QuestionActivity, ServerAPI.Response>() {
                     @Override
-                    public void accept(QuestionActivity activity, ServerAPI.Response _response) throws Exception {
+                    public void accept(QuestionActivity activity, ServerAPI.Response response) throws Exception {
                         /**
                          * Model data changed the View will be informed via Callback
                          * Data->Model->Presenter->View Flow
                          */
-                        /**
-                         * @// TODO: 02.07.17 handle the array 
-                         */
-                        response = _response;
                         activity.onQuestions(response.questions[0]);
                     }
                 },
@@ -93,17 +90,22 @@ public class QuestionPresenter extends RxPresenter<QuestionActivity> {
         state.putString(NAME_KEY, name);
     }
 
+    /**
+     * View->Presenter->Model Flow
+     */
     public void request() {
         start(REQUEST_ITEMS);
     }
 
-    public int[] getCorrectAnswers(){
-        int[] correctAnswerIds = new int[10];
-        int i = 0;
-        for(ServerAPI.Question.Answer answer:response.questions[0].answers) {
-            correctAnswerIds[i] = Integer.getInteger(answer.answerId);
-            i++;
+    /**
+     * View->Presenter->Model Flow
+     */
+    public void selectedAnswers(ArrayList<CheckBox> checkBoxes){
+        ArrayList<Integer> answerIds = new ArrayList();
+        for (int i = 0; i < checkBoxes.size(); i++) {
+            if (checkBoxes.get(i).isSelected()){
+                answerIds.add(checkBoxes.get(i).getId());
+            }
         }
-        return correctAnswerIds;
     }
 }

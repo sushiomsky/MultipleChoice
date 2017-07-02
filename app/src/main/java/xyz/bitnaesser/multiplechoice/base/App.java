@@ -26,17 +26,28 @@ package xyz.bitnaesser.multiplechoice.base;
 
 import android.app.Application;
 
+import java.io.IOException;
+
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
+import xyz.bitnaesser.multiplechoice.util.getJsonFromFile;
 
 public class App extends Application {
 
     private static ServerAPI serverAPI;
+    private static String jsonString;
 
     @Override
     public void onCreate() {
         super.onCreate();
+
+        try {
+            jsonString = getJsonFromFile.loadJSONFromAsset(getAssets().open("dummy.json"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         serverAPI = new Retrofit.Builder()
                 .baseUrl(ServerAPI.ENDPOINT)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())

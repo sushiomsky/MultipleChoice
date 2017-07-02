@@ -40,6 +40,7 @@ public interface ServerAPI {
             public String answerId;
         }
     }
+
     class Response {
         @SerializedName("value")
         public Question[] questions;

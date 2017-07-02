@@ -38,16 +38,16 @@ public class QuestionActivity extends NucleusActivity<QuestionPresenter> {
         if (savedInstanceState == null)
             getPresenter().request();
 
-
-
         textViewQuestion = (TextView)findViewById(R.id.textViewQuestion);
         answersContainer = (LinearLayout)findViewById(R.id.answers_container);
 
         registerButtonNext();
+        registerButtonShowResults();
     }
 
     public void onQuestions(ServerAPI.Question question) {
         ArrayList<String> answerStrings = new ArrayList();
+        ArrayList<String> answerStringId = new ArrayList();
 
         for (ServerAPI.Question.Answer answer :question.answers){
             answerStrings.add(answer.text);
@@ -82,7 +82,7 @@ public class QuestionActivity extends NucleusActivity<QuestionPresenter> {
         buttonNext.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                getPresenter().getCorrectAnswers();
+                getPresenter().selectedAnswers(checkBoxAnswers);
             }
         });
     }
@@ -95,6 +95,10 @@ public class QuestionActivity extends NucleusActivity<QuestionPresenter> {
     public void setQuestion(String question, ArrayList<String> answers){
         setQuestionString(question);
         setAnswerStrings(answers);
+    }
+
+    public void showResults(int[] CorrectAnswerIds){
+
     }
 
     private void setQuestionString(String question){
@@ -114,4 +118,6 @@ public class QuestionActivity extends NucleusActivity<QuestionPresenter> {
             answersContainer.addView(cb);
         }
     }
+
+
 }
