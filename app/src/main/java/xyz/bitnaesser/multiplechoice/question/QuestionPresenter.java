@@ -24,6 +24,8 @@ public class QuestionPresenter extends RxPresenter<QuestionActivity> {
 
     private String name = DEFAULT_NAME;
 
+    private ServerAPI.Response response;
+
     @Override
     public void onCreate(Bundle savedState) {
         super.onCreate(savedState);
@@ -58,7 +60,7 @@ public class QuestionPresenter extends RxPresenter<QuestionActivity> {
                */
                 new BiConsumer<QuestionActivity, ServerAPI.Response>() {
                     @Override
-                    public void accept(QuestionActivity activity, ServerAPI.Response response) throws Exception {
+                    public void accept(QuestionActivity activity, ServerAPI.Response _response) throws Exception {
                         /**
                          * Model data changed the View will be informed via Callback
                          * Data->Model->Presenter->View Flow
@@ -66,6 +68,7 @@ public class QuestionPresenter extends RxPresenter<QuestionActivity> {
                         /**
                          * @// TODO: 02.07.17 handle the array 
                          */
+                        response = _response;
                         activity.onQuestions(response.questions[0]);
                     }
                 },
@@ -94,7 +97,13 @@ public class QuestionPresenter extends RxPresenter<QuestionActivity> {
         start(REQUEST_ITEMS);
     }
 
-    public void getCorrectAnswers(){
-
+    public int[] getCorrectAnswers(){
+        int[] correctAnswerIds = new int[10];
+        int i = 0;
+        for(ServerAPI.Question.Answer answer:response.questions[0].answers) {
+            correctAnswerIds[i] = Integer.getInteger(answer.answerId);
+            i++;
+        }
+        return correctAnswerIds;
     }
 }
