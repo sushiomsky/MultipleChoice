@@ -1,1 +1,1 @@
-{ "type": "success", "value": [ { "id": 1, "question": "Question1?", "answers": ["Answer1", "Answer2", "Answer3", "Answer4", "Answer5", "Answer6"] }]}
+{ "type": "success", "value": [ { "id": 1, "question": "Question1?", "answers": [{"id":1, "answer":"Answer1"}, {"id":2, "answer":"Answer2"}, {"id":3, "answer":"Answer3"}] }]}

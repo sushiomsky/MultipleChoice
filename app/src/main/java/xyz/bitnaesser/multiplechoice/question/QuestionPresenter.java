@@ -63,7 +63,10 @@ public class QuestionPresenter extends RxPresenter<QuestionActivity> {
                          * Model data changed the View will be informed via Callback
                          * Data->Model->Presenter->View Flow
                          */
-                        activity.onQuestions(response.questions);
+                        /**
+                         * @// TODO: 02.07.17 handle the array 
+                         */
+                        activity.onQuestions(response.questions[0]);
                     }
                 },
                 new BiConsumer<QuestionActivity, Throwable>() {
@@ -89,5 +92,9 @@ public class QuestionPresenter extends RxPresenter<QuestionActivity> {
 
     public void request() {
         start(REQUEST_ITEMS);
+    }
+
+    public void getCorrectAnswers(){
+
     }
 }

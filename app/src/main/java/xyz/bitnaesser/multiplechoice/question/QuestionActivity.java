@@ -46,17 +46,21 @@ public class QuestionActivity extends NucleusActivity<QuestionPresenter> {
         registerButtonNext();
     }
 
-    public void onQuestions(ServerAPI.Question[] questions) {
-        //check1.setChecked(user.equals(MainPresenter.NAME_1));
-        //check2.setChecked(user.equals(MainPresenter.NAME_2));
-        setQuestion(questions[0].text.toString(), questions[0].answers);
+    public void onQuestions(ServerAPI.Question question) {
+        ArrayList<String> answerStrings = new ArrayList();
+
+        for (ServerAPI.Question.Answer answer :question.answers){
+            answerStrings.add(answer.text);
+        }
+        setQuestion(question.text.toString(), answerStrings);
         adapter.clear();
-        adapter.addAll(questions);
+        adapter.addAll(question);
     }
 
     public void onNetworkError(Throwable throwable) {
         Toast.makeText(this, throwable.getMessage(), Toast.LENGTH_LONG).show();
     }
+
     /**
      * Register onclickhandler for buttonNext
      */
@@ -71,11 +75,24 @@ public class QuestionActivity extends NucleusActivity<QuestionPresenter> {
     }
 
     /**
+     * Register onclickhandler for buttonShowResults
+     */
+    private void registerButtonShowResults(){
+        buttonNext = (Button)findViewById(R.id.buttonShowResults);
+        buttonNext.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                getPresenter().getCorrectAnswers();
+            }
+        });
+    }
+
+    /**
      * Setting a question is only allowed with a list of Answers
      * @param question
      * @param answers
      */
-    public void setQuestion(String question, String[] answers){
+    public void setQuestion(String question, ArrayList<String> answers){
         setQuestionString(question);
         setAnswerStrings(answers);
     }
@@ -84,7 +101,7 @@ public class QuestionActivity extends NucleusActivity<QuestionPresenter> {
         textViewQuestion.setText(question);
     }
 
-    private void setAnswerStrings(String[] answers){
+    private void setAnswerStrings(ArrayList<String> answers){
         for (String answer: answers){
             CheckBox cb = new CheckBox(this);
             cb.setText(answer);

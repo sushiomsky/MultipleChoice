@@ -21,13 +21,24 @@ public interface ServerAPI {
         @SerializedName("question")
         public String text;
 
+        @SerializedName("id")
+        public String questionId;
+
         @Override
         public String toString() {
             return Html.fromHtml(text).toString();
         }
 
         @SerializedName("answers")
-        public String[] answers;
+        public Answer[] answers;
+
+        public class Answer{
+            @SerializedName("answer")
+            public String text;
+
+            @SerializedName("id")
+            public String answerId;
+        }
     }
     class Response {
         @SerializedName("value")
