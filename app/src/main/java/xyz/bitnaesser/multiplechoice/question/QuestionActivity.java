@@ -2,7 +2,6 @@ package xyz.bitnaesser.multiplechoice.question;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
@@ -14,7 +13,6 @@ import java.util.ArrayList;
 import nucleus5.factory.RequiresPresenter;
 import nucleus5.view.NucleusActivity;
 import xyz.bitnaesser.multiplechoice.R;
-import xyz.bitnaesser.multiplechoice.base.ServerAPI;
 
 
 @RequiresPresenter(QuestionPresenter.class)
@@ -28,7 +26,6 @@ public class QuestionActivity extends NucleusActivity<QuestionPresenter> {
     private Button buttonNext;
     private Button buttonShowResults;
 
-    ArrayAdapter<ServerAPI.Question> adapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -43,18 +40,6 @@ public class QuestionActivity extends NucleusActivity<QuestionPresenter> {
 
         registerButtonNext();
         registerButtonShowResults();
-    }
-
-    public void onQuestions(ServerAPI.Question question) {
-        ArrayList<String> answerStrings = new ArrayList();
-        ArrayList<String> answerStringId = new ArrayList();
-
-        for (ServerAPI.Question.Answer answer :question.answers){
-            answerStrings.add(answer.text);
-        }
-        setQuestion(question.text.toString(), answerStrings);
-        adapter.clear();
-        adapter.addAll(question);
     }
 
     public void onNetworkError(Throwable throwable) {
@@ -95,10 +80,6 @@ public class QuestionActivity extends NucleusActivity<QuestionPresenter> {
     public void setQuestion(String question, ArrayList<String> answers){
         setQuestionString(question);
         setAnswerStrings(answers);
-    }
-
-    public void showResults(int[] CorrectAnswerIds){
-
     }
 
     private void setQuestionString(String question){

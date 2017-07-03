@@ -66,7 +66,11 @@ public class QuestionPresenter extends RxPresenter<QuestionActivity> {
                          * Model data changed the View will be informed via Callback
                          * Data->Model->Presenter->View Flow
                          */
-                        activity.onQuestions(response.questions[0]);
+                        ArrayList<String> answerList = new ArrayList<String>();
+                       for (ServerAPI.Question.Answer answer:  response.questions[0].answers) {
+                           answerList.add(answer.text);
+                       }
+                       activity.setQuestion(response.questions[0].text, answerList);
                     }
                 },
                 new BiConsumer<QuestionActivity, Throwable>() {
