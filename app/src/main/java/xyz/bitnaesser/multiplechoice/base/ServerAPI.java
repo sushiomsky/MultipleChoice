@@ -48,6 +48,8 @@ public interface ServerAPI {
 		public Question[] questions;
 	}
 
-    @GET("/bins/worp3")
+    @GET("/bins/q7cx3")
     Observable<Response> getQuestions();
+
+
 }

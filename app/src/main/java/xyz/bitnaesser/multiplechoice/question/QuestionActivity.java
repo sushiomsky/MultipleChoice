@@ -77,7 +77,7 @@ public class QuestionActivity extends NucleusActivity<QuestionPresenter> {
      * @param question
      * @param answers
      */
-    public void setQuestion(String question, ArrayList<String> answers){
+    public void showQuestion(String question, ArrayList<String> answers){
         setQuestionString(question);
         setAnswerStrings(answers);
     }
@@ -85,6 +85,7 @@ public class QuestionActivity extends NucleusActivity<QuestionPresenter> {
     private void setQuestionString(String question){
         textViewQuestion.setText(question);
     }
+
 
     private void setAnswerStrings(ArrayList<String> answers){
         for (String answer: answers){

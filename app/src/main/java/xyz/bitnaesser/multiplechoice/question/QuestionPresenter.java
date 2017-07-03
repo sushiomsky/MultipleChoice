@@ -27,6 +27,9 @@ public class QuestionPresenter extends RxPresenter<QuestionActivity> {
 
     private String name = DEFAULT_NAME;
 
+    private ServerAPI.Question[] questions;
+    private int questionsIndex = 0;
+
     @Override
     public void onCreate(Bundle savedState) {
         super.onCreate(savedState);
@@ -60,17 +63,21 @@ public class QuestionPresenter extends RxPresenter<QuestionActivity> {
                 A functional interface (callback) that accepts two values (of possibly different types).
                */
                 new BiConsumer<QuestionActivity, ServerAPI.Response>() {
+
+                    /**
+                     * Model data changed the View will be informed via Callback
+                     * Data->Model->Presenter->View Flow
+                     */
                     @Override
                     public void accept(QuestionActivity activity, ServerAPI.Response response) throws Exception {
+
                         /**
-                         * Model data changed the View will be informed via Callback
-                         * Data->Model->Presenter->View Flow
+                         * Cache the Questions[] from ServerApi response
                          */
-                        ArrayList<String> answerList = new ArrayList<String>();
-                       for (ServerAPI.Question.Answer answer:  response.questions[0].answers) {
-                           answerList.add(answer.text);
-                       }
-                       activity.setQuestion(response.questions[0].text, answerList);
+                       if(questions == null) questions = response.questions;
+
+                       activity.showQuestion(questions[questionsIndex].text, convertAnswers(questions[questionsIndex].answers));
+                       questionsIndex++;
                     }
                 },
                 new BiConsumer<QuestionActivity, Throwable>() {
@@ -101,6 +108,14 @@ public class QuestionPresenter extends RxPresenter<QuestionActivity> {
         start(REQUEST_ITEMS);
     }
 
+    public static ArrayList<String> convertAnswers(ServerAPI.Question.Answer[] answers){
+        ArrayList<String> answerList = new ArrayList<String>();
+
+        for (ServerAPI.Question.Answer answer:  answers) {
+            answerList.add(answer.text);
+        }
+        return answerList;
+    }
     /**
      * View->Presenter->Model Flow
      */
